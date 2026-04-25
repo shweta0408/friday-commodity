@@ -398,6 +398,8 @@ class FridayDashboard:
                 rsi_val = tech.rsi_values.get(tf, "—")
                 macd = tech.macd_signals.get(tf, "—")
                 div = tech.divergences.get(tf)
+                formatted_rsi = f"{rsi_val:.1f}" if isinstance(
+                    rsi_val, (int, float)) else rsi_val
                 div_txt = div.divergence_type.replace(
                     "_", " ").upper() if div else "NONE"
                 div_clr = "#00E676" if div and "bullish" in div.divergence_type else \
@@ -406,7 +408,7 @@ class FridayDashboard:
                 st.markdown(f"""
                 <div class="data-row">
                   <span class="data-label">{tf} RSI</span>
-                  <span class="data-value">{rsi_val:.1f if isinstance(rsi_val, float) else rsi_val}</span>
+                  <span class="data-value">{formatted_rsi}</span>
                 </div>
                 <div class="data-row">
                   <span class="data-label">{tf} MACD</span>
@@ -546,8 +548,8 @@ class FridayDashboard:
             return "color: #F5A623"
 
         styled = df.style \
-            .map(color_signal, subset=["Signal"]) \
-            .map(color_score,  subset=["Score"]) \
+            .applymap(color_signal, subset=["Signal"]) \
+            .applymap(color_score,  subset=["Score"]) \
             .set_properties(**{
                 "background-color": "#0D1117",
                 "color": "#C8D0DC",

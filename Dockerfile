@@ -23,9 +23,9 @@ RUN pip install --no-cache-dir faiss-cpu
 # Install all other deps
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install pandas_ta from zip (git clone blocked on HF)
-RUN pip install --no-cache-dir \
-    "pandas_ta @ https://github.com/twopirllc/pandas-ta/archive/refs/heads/development.zip"
+# Install pandas_ta — pin to 0.3.14b for Python 3.11 compatibility
+# (pandas_ta 0.4.x requires Python >=3.12)
+RUN pip install --no-cache-dir "pandas_ta==0.3.14b"
 
 # Copy app source
 COPY . .
@@ -33,10 +33,11 @@ COPY . .
 # Create data directory
 RUN mkdir -p friday_data
 
-EXPOSE 8501
+# HF Spaces Docker requires port 7860
+EXPOSE 7860
 
 # Streamlit config — headless for cloud
-ENV STREAMLIT_SERVER_PORT=8501
+ENV STREAMLIT_SERVER_PORT=7860
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
 ENV STREAMLIT_THEME_BASE=dark
@@ -46,6 +47,6 @@ ENV STREAMLIT_THEME_TEXT_COLOR=#C8D0DC
 ENV STREAMLIT_THEME_PRIMARY_COLOR=#F5A623
 
 CMD ["streamlit", "run", "dashboard.py", \
-     "--server.port=8501", \
+     "--server.port=7860", \
      "--server.headless=true", \
      "--server.address=0.0.0.0"]

@@ -548,8 +548,8 @@ class FridayDashboard:
             return "color: #F5A623"
 
         styled = df.style \
-            .applymap(color_signal, subset=["Signal"]) \
-            .applymap(color_score,  subset=["Score"]) \
+            .map(color_signal, subset=["Signal"]) \
+            .map(color_score,  subset=["Score"]) \
             .set_properties(**{
                 "background-color": "#0D1117",
                 "color": "#C8D0DC",

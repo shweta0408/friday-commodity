@@ -1,0 +1,182 @@
+[
+  {
+    "id": "OIL_001",
+    "asset": "CRUDE_OIL",
+    "headline": "OPEC+ agrees to surprise production cut of 1 million barrels per day",
+    "date": "2023-04-02",
+    "move_pct": 6.28,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["OPEC", "production cut", "supply", "barrels"]
+  },
+  {
+    "id": "OIL_002",
+    "asset": "CRUDE_OIL",
+    "headline": "US strategic petroleum reserve release of 50 million barrels announced",
+    "date": "2021-11-23",
+    "move_pct": -3.50,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["SPR", "strategic reserve", "release", "supply glut"]
+  },
+  {
+    "id": "OIL_003",
+    "asset": "CRUDE_OIL",
+    "headline": "EIA crude oil inventories show surprise draw of 10 million barrels",
+    "date": "2022-07-06",
+    "move_pct": 4.10,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["EIA", "inventories", "draw", "supply"]
+  },
+  {
+    "id": "OIL_004",
+    "asset": "CRUDE_OIL",
+    "headline": "Russia announces oil output increase defying OPEC+ quota agreement",
+    "date": "2020-03-06",
+    "move_pct": -24.59,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["Russia", "output", "OPEC", "quota", "price war"]
+  },
+  {
+    "id": "OIL_005",
+    "asset": "CRUDE_OIL",
+    "headline": "Drone attacks on Saudi Aramco facilities cut production by 5 percent",
+    "date": "2019-09-14",
+    "move_pct": 14.61,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["Saudi Arabia", "Aramco", "attack", "supply disruption"]
+  },
+  {
+    "id": "OIL_006",
+    "asset": "CRUDE_OIL",
+    "headline": "China COVID lockdowns destroy oil demand outlook for Q2",
+    "date": "2022-04-11",
+    "move_pct": -5.70,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["China", "lockdown", "demand", "COVID", "recession"]
+  },
+  {
+    "id": "OIL_007",
+    "asset": "CRUDE_OIL",
+    "headline": "Libya force majeure declared halting 1.1 million barrels per day of exports",
+    "date": "2022-07-01",
+    "move_pct": 3.80,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["Libya", "force majeure", "exports", "supply disruption"]
+  },
+  {
+    "id": "GOLD_001",
+    "asset": "GOLD",
+    "headline": "Federal Reserve signals unexpected rate cut amid economic slowdown fears",
+    "date": "2019-03-20",
+    "move_pct": 2.30,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["Federal Reserve", "rate cut", "dovish", "monetary policy"]
+  },
+  {
+    "id": "GOLD_002",
+    "asset": "GOLD",
+    "headline": "US inflation CPI surges to 40-year high exceeding all forecasts",
+    "date": "2022-06-10",
+    "move_pct": 2.80,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["inflation", "CPI", "surges", "40-year high", "hot"]
+  },
+  {
+    "id": "GOLD_003",
+    "asset": "GOLD",
+    "headline": "Dollar index DXY surges to 20-year high on aggressive Fed rate hikes",
+    "date": "2022-09-28",
+    "move_pct": -2.60,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["dollar", "DXY", "Fed", "rate hike", "hawkish", "strong dollar"]
+  },
+  {
+    "id": "GOLD_004",
+    "asset": "GOLD",
+    "headline": "Banking crisis contagion fears spread after SVB and Credit Suisse collapse",
+    "date": "2023-03-15",
+    "move_pct": 3.10,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["bank", "crisis", "collapse", "contagion", "safe haven", "SVB"]
+  },
+  {
+    "id": "GOLD_005",
+    "asset": "GOLD",
+    "headline": "Fed chair Powell signals higher for longer rates crushing gold appeal",
+    "date": "2023-08-25",
+    "move_pct": -2.20,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["Fed", "Powell", "hawkish", "higher for longer", "rates"]
+  },
+  {
+    "id": "GOLD_006",
+    "asset": "GOLD",
+    "headline": "Geopolitical tensions escalate as Middle East conflict widens",
+    "date": "2023-10-07",
+    "move_pct": 3.50,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["geopolitical", "war", "conflict", "Middle East", "safe haven"]
+  },
+  {
+    "id": "GOLD_007",
+    "asset": "GOLD",
+    "headline": "China central bank increases gold reserves for eighth consecutive month",
+    "date": "2023-09-07",
+    "move_pct": 2.05,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["China", "central bank", "reserves", "gold buying", "demand"]
+  },
+  {
+    "id": "SILVER_001",
+    "asset": "SILVER",
+    "headline": "Reddit WallStreetBets silver short squeeze campaign goes viral",
+    "date": "2021-02-01",
+    "move_pct": 9.30,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["short squeeze", "Reddit", "WallStreetBets", "retail", "silver"]
+  },
+  {
+    "id": "SILVER_002",
+    "asset": "SILVER",
+    "headline": "Global solar panel demand growth accelerates boosting silver industrial demand",
+    "date": "2023-05-12",
+    "move_pct": 2.40,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["solar", "green energy", "industrial demand", "EV", "photovoltaic"]
+  },
+  {
+    "id": "SILVER_003",
+    "asset": "SILVER",
+    "headline": "Manufacturing PMI data shows global industrial contraction deepening",
+    "date": "2023-06-01",
+    "move_pct": -3.20,
+    "direction": "bearish",
+    "timeframe_hours": 4,
+    "keywords": ["PMI", "manufacturing", "contraction", "industrial", "recession"]
+  },
+  {
+    "id": "SILVER_004",
+    "asset": "SILVER",
+    "headline": "Mine supply disruptions in Mexico and Peru reduce silver output significantly",
+    "date": "2022-11-15",
+    "move_pct": 2.90,
+    "direction": "bullish",
+    "timeframe_hours": 4,
+    "keywords": ["mine", "supply", "disruption", "Mexico", "Peru", "production"]
+  }
+]

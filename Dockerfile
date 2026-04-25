@@ -23,6 +23,10 @@ RUN pip install --no-cache-dir faiss-cpu
 # Install all other deps
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install pandas_ta from zip (git clone blocked on HF)
+RUN pip install --no-cache-dir \
+    "pandas_ta @ https://github.com/twopirllc/pandas-ta/archive/refs/heads/development.zip"
+
 # Copy app source
 COPY . .
 

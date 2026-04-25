@@ -5,9 +5,8 @@
 
 # --- Core Data & Finance ---
 yfinance>=0.2.40
-pandas>=2.1.0
 numpy>=1.26.0
-pandas_ta==0.3.14b0
+pandas_ta
 
 # --- Technical Analysis ---
 scipy>=1.12.0

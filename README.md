@@ -3,11 +3,9 @@ title: FRIDAY Commodity Intelligence
 emoji: 🛢️
 colorFrom: yellow
 colorTo: gray
-sdk: streamlit
-sdk_version: 1.35.0
-app_file: dashboard.py
+sdk: docker
+app_port: 8501
 pinned: false
-python_version: "3.11"
 ---
 
 # FRIDAY — Commodity Intelligence System

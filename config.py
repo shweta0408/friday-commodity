@@ -21,7 +21,7 @@ ASSETS: Dict[str, Dict] = {
     "CRUDE_OIL": {
         "ticker":        "CL=F",
         "display_name":  "Crude Oil (WTI)",
-        "finnhub_symbol":"USOIL",
+        "finnhub_symbol": "USOIL",
         "news_keywords": ["crude oil", "WTI", "OPEC", "brent", "petroleum", "energy"],
         "unit":          "USD/bbl",
         "emoji":         "🛢️",
@@ -29,7 +29,7 @@ ASSETS: Dict[str, Dict] = {
     "GOLD": {
         "ticker":        "GC=F",
         "display_name":  "Gold",
-        "finnhub_symbol":"GOLD",
+        "finnhub_symbol": "GOLD",
         "news_keywords": ["gold", "XAU", "bullion", "precious metals", "safe haven"],
         "unit":          "USD/oz",
         "emoji":         "🥇",
@@ -37,7 +37,7 @@ ASSETS: Dict[str, Dict] = {
     "SILVER": {
         "ticker":        "SI=F",
         "display_name":  "Silver",
-        "finnhub_symbol":"SILVER",
+        "finnhub_symbol": "SILVER",
         "news_keywords": ["silver", "XAG", "precious metals", "industrial metals"],
         "unit":          "USD/oz",
         "emoji":         "🥈",
@@ -48,7 +48,7 @@ ASSETS: Dict[str, Dict] = {
 TIMEFRAMES: Dict[str, Dict] = {
     "15m": {"period": "5d",  "interval": "15m",  "label": "Intraday"},
     "1h":  {"period": "30d", "interval": "1h",   "label": "Swing"},
-    "1d":  {"period": "365d","interval": "1d",   "label": "Trend"},
+    "1d":  {"period": "365d", "interval": "1d",   "label": "Trend"},
 }
 
 # ── Composite Score Weights ──────────────────────────────────
@@ -57,20 +57,20 @@ WEIGHT_TECHNICALS: float = 0.40
 WEIGHT_WIN_LOSS:   float = 0.20
 
 # ── Trading Signal Thresholds ────────────────────────────────
-TRADE_LONG_THRESHOLD:  float =  75.0   # Score > +75 → LONG signal
+TRADE_LONG_THRESHOLD:  float = 75.0   # Score > +75 → LONG signal
 TRADE_SHORT_THRESHOLD: float = -75.0   # Score < -75 → SHORT signal
-RSI_OVERBOUGHT:        float =  70.0   # RSI filter — daily overbought
-RSI_OVERSOLD:          float =  30.0   # RSI filter — daily oversold
-MIN_WIN_RATE:          float =  0.45   # Confidence penalty below this rate
+RSI_OVERBOUGHT:        float = 70.0   # RSI filter — daily overbought
+RSI_OVERSOLD:          float = 30.0   # RSI filter — daily oversold
+MIN_WIN_RATE:          float = 0.45   # Confidence penalty below this rate
 
 # ── RSI Divergence Settings ──────────────────────────────────
-RSI_PERIOD:           int   = 14
-DIV_LOOKBACK:         int   = 60       # bars to scan for divergence
-DIV_MIN_DISTANCE:     int   = 5        # min bars between pivot points
+RSI_PERIOD:           int = 14
+DIV_LOOKBACK:         int = 60       # bars to scan for divergence
+DIV_MIN_DISTANCE:     int = 5        # min bars between pivot points
 DIV_PROMINENCE:       float = 2.0      # scipy peak prominence
 
 # ── Bollinger Band Settings ──────────────────────────────────
-BB_PERIOD: int   = 20
+BB_PERIOD: int = 20
 BB_STD:    float = 2.0
 
 # ── MACD Settings ────────────────────────────────────────────
@@ -93,6 +93,6 @@ NEWS_REFRESH_SECONDS:  int = 300
 # ── Local Storage Paths ──────────────────────────────────────
 DATA_DIR:             str = "friday_data"
 TRADE_LOG_PATH:       str = f"{DATA_DIR}/trade_log.json"
-HISTORICAL_NEWS_PATH: str = f"{DATA_DIR}/historical_impact_news.json"
+HISTORICAL_NEWS_PATH: str = "historical_impact_news.json"   # root-level seed file
 VECTOR_INDEX_PATH:    str = f"{DATA_DIR}/news_faiss.index"
 VECTOR_META_PATH:     str = f"{DATA_DIR}/news_meta.json"

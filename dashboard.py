@@ -205,8 +205,8 @@ class FridayDashboard:
 
     def __init__(self):
         self.streamer = DataStreamer()
-        self.intel    = IntelligenceUnit()
-        self.tracker  = PerformanceTracker()
+        self.intel = IntelligenceUnit()
+        self.tracker = PerformanceTracker()
         self._signals: Dict[str, CompositeSignal] = {}
 
     # ── Data Refresh ─────────────────────────────────────────
@@ -215,11 +215,11 @@ class FridayDashboard:
         """Fetch data and run analysis for all assets."""
         for asset_key in ASSETS:
             try:
-                ohlcv_dict  = self.streamer.get_all_ohlcv(asset_key)
-                spot        = self.streamer.get_spot_price(asset_key) or 0.0
-                change      = self.streamer.get_price_change_pct(asset_key) or 0.0
-                news        = self.streamer.get_news(asset_key)
-                win_rate    = self.tracker.asset_win_rate(asset_key)
+                ohlcv_dict = self.streamer.get_all_ohlcv(asset_key)
+                spot = self.streamer.get_spot_price(asset_key) or 0.0
+                change = self.streamer.get_price_change_pct(asset_key) or 0.0
+                news = self.streamer.get_news(asset_key)
+                win_rate = self.tracker.asset_win_rate(asset_key)
 
                 signal = self.intel.analyse(
                     asset_key=asset_key,
@@ -232,14 +232,17 @@ class FridayDashboard:
                 self._signals[asset_key] = signal
 
             except Exception as exc:
-                logger.error(f"Error refreshing {asset_key}: {exc}", exc_info=True)
+                logger.error(
+                    f"Error refreshing {asset_key}: {exc}", exc_info=True)
 
     # ── HTML Components ──────────────────────────────────────
 
     @staticmethod
     def _score_color_class(score: float) -> str:
-        if score > 10:  return "score-positive"
-        if score < -10: return "score-negative"
+        if score > 10:
+            return "score-positive"
+        if score < -10:
+            return "score-negative"
         return "score-neutral"
 
     @staticmethod
@@ -311,7 +314,8 @@ class FridayDashboard:
         fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=score,
-            number={"font": {"color": color, "family": "Orbitron", "size": 24}, "suffix": ""},
+            number={"font": {"color": color,
+                             "family": "Orbitron", "size": 24}, "suffix": ""},
             gauge={
                 "axis":     {"range": [-100, 100], "tickfont": {"size": 8, "color": "#506080"}},
                 "bar":      {"color": color, "thickness": 0.3},
@@ -342,15 +346,15 @@ class FridayDashboard:
     # ── Asset Card ───────────────────────────────────────────
 
     def _render_asset_card(self, signal: CompositeSignal):
-        asset_key  = signal.asset_key
-        cfg        = ASSETS[asset_key]
-        score      = signal.composite_score
-        card_cls   = self._card_class(signal.trade_signal)
-        badge_cls  = self._badge_class(signal.trade_signal)
-        score_cls  = self._score_color_class(score)
-        conf_cls   = self._conf_class(signal.confidence)
+        asset_key = signal.asset_key
+        cfg = ASSETS[asset_key]
+        score = signal.composite_score
+        card_cls = self._card_class(signal.trade_signal)
+        badge_cls = self._badge_class(signal.trade_signal)
+        score_cls = self._score_color_class(score)
+        conf_cls = self._conf_class(signal.confidence)
 
-        price_str  = self._format_price(signal.spot_price, asset_key)
+        price_str = self._format_price(signal.spot_price, asset_key)
         change_str = f"{signal.price_change_pct:+.2f}%" if signal.price_change_pct else "—"
         change_clr = "color:#00E676" if signal.price_change_pct and signal.price_change_pct > 0 else "color:#FF3D57"
 
@@ -388,12 +392,14 @@ class FridayDashboard:
         col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
         with col1:
-            st.markdown('<div class="section-header">TECHNICALS</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">TECHNICALS</div>',
+                        unsafe_allow_html=True)
             for tf in ["15m", "1h", "1d"]:
                 rsi_val = tech.rsi_values.get(tf, "—")
-                macd    = tech.macd_signals.get(tf, "—")
-                div     = tech.divergences.get(tf)
-                div_txt = div.divergence_type.replace("_", " ").upper() if div else "NONE"
+                macd = tech.macd_signals.get(tf, "—")
+                div = tech.divergences.get(tf)
+                div_txt = div.divergence_type.replace(
+                    "_", " ").upper() if div else "NONE"
                 div_clr = "#00E676" if div and "bullish" in div.divergence_type else \
                           "#FF3D57" if div and "bearish" in div.divergence_type else "#506080"
 
@@ -413,7 +419,8 @@ class FridayDashboard:
                 """, unsafe_allow_html=True)
 
         with col2:
-            st.markdown('<div class="section-header">S/D ZONES</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">S/D ZONES</div>',
+                        unsafe_allow_html=True)
             for lo, hi in tech.supply_zones[-3:]:
                 st.markdown(f"""
                 <div class="data-row">
@@ -427,7 +434,8 @@ class FridayDashboard:
                   <span class="data-value">{lo:.2f}–{hi:.2f}</span>
                 </div>""", unsafe_allow_html=True)
 
-            st.markdown('<div class="section-header" style="margin-top:12px">KEY LEVELS</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="section-header" style="margin-top:12px">KEY LEVELS</div>', unsafe_allow_html=True)
             for r in tech.resistance_levels[:3]:
                 st.markdown(f"""
                 <div class="data-row">
@@ -442,7 +450,8 @@ class FridayDashboard:
                 </div>""", unsafe_allow_html=True)
 
         with col3:
-            st.markdown('<div class="section-header">SENTIMENT</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">SENTIMENT</div>',
+                        unsafe_allow_html=True)
             tone_clr = "#00E676" if sent.tone == "Bullish" else "#FF3D57" if sent.tone == "Bearish" else "#F5A623"
             st.markdown(f"""
             <div class="data-row"><span class="data-label">TONE</span>
@@ -456,7 +465,8 @@ class FridayDashboard:
             """, unsafe_allow_html=True)
 
             if sent.impact_matches:
-                st.markdown('<div class="section-header" style="margin-top:12px">IMPACT EVENTS</div>', unsafe_allow_html=True)
+                st.markdown(
+                    '<div class="section-header" style="margin-top:12px">IMPACT EVENTS</div>', unsafe_allow_html=True)
                 for m in sent.impact_matches[:2]:
                     move_clr = "#00E676" if m["move_pct"] > 0 else "#FF3D57"
                     st.markdown(f"""
@@ -469,17 +479,21 @@ class FridayDashboard:
                     </div>""", unsafe_allow_html=True)
 
         with col4:
-            st.markdown('<div class="section-header">REASONING</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">REASONING</div>',
+                        unsafe_allow_html=True)
             for line in signal.reasoning:
-                st.markdown(f'<div class="reasoning-item">{line}</div>', unsafe_allow_html=True)
+                st.markdown(
+                    f'<div class="reasoning-item">{line}</div>', unsafe_allow_html=True)
 
-            st.markdown('<div class="section-header" style="margin-top:12px">WYCKOFF</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="section-header" style="margin-top:12px">WYCKOFF</div>', unsafe_allow_html=True)
             st.markdown(f"""
             <div style="padding:8px;background:#0A0D12;border:1px solid #1E2A3A;font-size:11px;color:#F5A623">
               {tech.wyckoff_phase}
             </div>""", unsafe_allow_html=True)
 
-            st.markdown('<div class="section-header" style="margin-top:12px">W/L RATIO</div>', unsafe_allow_html=True)
+            st.markdown(
+                '<div class="section-header" style="margin-top:12px">W/L RATIO</div>', unsafe_allow_html=True)
             wl = signal.win_loss_ratio
             wl_clr = "#00E676" if wl >= 0.55 else "#FF3D57" if wl < 0.45 else "#F5A623"
             st.markdown(f"""
@@ -502,8 +516,9 @@ class FridayDashboard:
                 "Chg %":       f"{sig.price_change_pct:+.2f}%" if sig.price_change_pct else "—",
                 "Sentiment":   sig.sentiment.tone,
                 "15m Div":     sig.technicals.divergences.get("15m", None) and
-                               sig.technicals.divergences["15m"].divergence_type.replace("_"," ").title() or "None",
-                "1h MACD":     sig.technicals.macd_signals.get("1h", "—").replace("_"," ").title(),
+                sig.technicals.divergences["15m"].divergence_type.replace(
+                    "_", " ").title() or "None",
+                "1h MACD":     sig.technicals.macd_signals.get("1h", "—").replace("_", " ").title(),
                 "Score":       f"{sig.composite_score:+.1f}",
                 "Signal":      sig.trade_signal,
                 "Confidence":  sig.confidence,
@@ -513,22 +528,26 @@ class FridayDashboard:
         df = pd.DataFrame(rows)
 
         def color_signal(val):
-            if val == "LONG":   return "color: #00E676; font-weight: bold"
-            if val == "SHORT":  return "color: #FF3D57; font-weight: bold"
+            if val == "LONG":
+                return "color: #00E676; font-weight: bold"
+            if val == "SHORT":
+                return "color: #FF3D57; font-weight: bold"
             return "color: #F5A623"
 
         def color_score(val):
             try:
                 v = float(val)
-                if v > 10:  return "color: #00E676"
-                if v < -10: return "color: #FF3D57"
+                if v > 10:
+                    return "color: #00E676"
+                if v < -10:
+                    return "color: #FF3D57"
             except:
                 pass
             return "color: #F5A623"
 
         styled = df.style \
-            .applymap(color_signal, subset=["Signal"]) \
-            .applymap(color_score,  subset=["Score"]) \
+            .map(color_signal, subset=["Signal"]) \
+            .map(color_score,  subset=["Score"]) \
             .set_properties(**{
                 "background-color": "#0D1117",
                 "color": "#C8D0DC",
@@ -589,11 +608,13 @@ class FridayDashboard:
                 self._refresh_all()
 
         if not self._signals:
-            st.error("No data available. Check your API keys in .env and internet connectivity.")
+            st.error(
+                "No data available. Check your API keys in .env and internet connectivity.")
             return
 
         # ── Summary Table ─────────────────────────────────
-        st.markdown('<div class="section-header">LIVE MARKET OVERVIEW</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-header">LIVE MARKET OVERVIEW</div>', unsafe_allow_html=True)
         self._render_summary_table()
 
         # ── Asset Cards ───────────────────────────────────
@@ -614,7 +635,8 @@ class FridayDashboard:
                 with cc:
                     chart = self._render_mini_chart(asset_key)
                     if chart:
-                        st.plotly_chart(chart, use_container_width=True, key=f"chart_{asset_key}")
+                        st.plotly_chart(
+                            chart, use_container_width=True, key=f"chart_{asset_key}")
                     else:
                         st.caption("Insufficient data for chart.")
 

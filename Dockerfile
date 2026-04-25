@@ -1,9 +1,9 @@
 # ============================================================
 # FRIDAY — Commodity Intelligence System
-# Dockerfile — uses Python 3.11 (stable, all wheels available)
+# Dockerfile — Python 3.12 (required for pandas_ta 0.4.x)
 # ============================================================
 
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # System deps for scipy / numpy builds
 RUN apt-get update && apt-get install -y \
@@ -17,15 +17,14 @@ WORKDIR /app
 # Copy requirements first for layer caching
 COPY requirements.txt .
 
-# Install faiss-cpu separately (pre-built wheel for py3.11)
+# Install faiss-cpu separately (pre-built wheel)
 RUN pip install --no-cache-dir faiss-cpu
 
 # Install all other deps
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install pandas_ta — pin to 0.3.14b for Python 3.11 compatibility
-# (pandas_ta 0.4.x requires Python >=3.12)
-RUN pip install --no-cache-dir "pandas_ta==0.3.14b"
+# Install pandas_ta (requires Python >=3.12)
+RUN pip install --no-cache-dir pandas_ta
 
 # Copy app source
 COPY . .
